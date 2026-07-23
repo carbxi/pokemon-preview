@@ -1,0 +1,93 @@
+@import url('https://googleapis.com');
+
+body{
+  background-color: #121212
+}
+ 
+:root {
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+form {
+  position: sticky;
+  top:0;
+  display:grid;
+  grid-template-areas:
+    "search search"
+    "clear submit";
+  gap:3px;
+  margin:auto;
+  padding: 10px;
+  width:fit-content;
+  height: 60px;
+  z-index: 1000;
+}
+
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 80%;
+  width: max-content;
+  margin: auto;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 15px;
+  padding-top: 10px;
+  border-radius: 15px;
+  border: 2px solid black;
+  min-height: 410px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card hr {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.card-header * {
+  font-size: 2rem;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.card .about {
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #000000;
+  background-color: rgba(240, 240, 240, 0.3);
+  flex-grow: 1;
+  margin: 0px;
+  padding: 10px
+}
+
+.card .card-image {
+  display: block;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Messing with containers</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  </head>
+  <body>
+    <form id="input-form">
+      <input type="text" id="input-text" style="grid-area: search"><br>
+      <button type="button" onclick="clearPage()" style="grid-area: clear">Clear</button>
+      <input type="submit" value="Submit" style="grid-area: submit">
+    </form>
+    <div class="card-container" id="container">
+    </div>
+    <script src="script.js"></script>
+  </body>
+
+  <template id="card-template">
+    <div onclick="this.remove()" oncontextmenu="toggleImage(this); return false;" class="card" style="background-color: white;">
+      <div class="card-header">
+        <div class="header-name"></div>
+        <div class="header-id"></div>
+      </div>
+      <img class="card-image">
+      <hr>
+      <p class="about"></p>
+    </div>
+  </template>
+</html>
