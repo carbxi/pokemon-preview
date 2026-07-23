@@ -34,6 +34,7 @@ function createCard(object) {
   card.querySelector('.header-name').textContent = object.name;
   card.querySelector('.header-id').textContent = object.id;
   card.querySelector('.card-image').src = object.standardImage;
+  preloadImage(object.shinyImage);
   card.querySelector('.about').textContent = object.info;
   if (object.colours.length > 1) {
     card.style.background = `linear-gradient(to bottom, ${object.colours[0]}, ${object.colours[1]})`;
@@ -89,10 +90,10 @@ function clearPage() {
 async function fillAll() {
   const allResponse = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1351");
   const all = await allResponse.json();
-  all.results.forEach((item, index) => {
-    insertPokemon(item.name);
-    console.log(index);
-  })
+  for (let i = 0; i < all.results.length; i++) {
+    insertPokemon(all.results[i].name);
+    console.log(i);
+  }
 }
 
 function toggleImage(card) {
@@ -118,4 +119,9 @@ function formatName(rawName) {
   result += baseName.charAt(0).toUpperCase() + baseName.slice(1);
   result += suffix;
   return result;
+}
+
+function preloadImage(url) {
+  const img = new Image();
+  img.src = url;
 }
