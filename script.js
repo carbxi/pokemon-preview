@@ -79,6 +79,10 @@ async function createPokemon(name) {
 }
 
 async function insertPokemon(name) {
+  if (name === "pokedex") {
+    fillAll();
+    return;
+  }
   const pokemon = await createPokemon(name);
   const card = createCard(pokemon);
   document.getElementById("main-container").append(card);
@@ -93,12 +97,17 @@ function clearPage() {
 }
 
 async function fillAll() {
-  const allResponse = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1351");
+  const allResponse = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=10000");
   const all = await allResponse.json();
-  for (let i = 0; i < all.results.length; i++) {
-    insertPokemon(all.results[i].name);
-    console.log(i);
-  }
+
+  const promises = all.results.map(async (item) => {
+    const result = await createPokemon(item.name);
+    return result;
+  });
+
+  const pokemon = await Promise.all(promises);
+  const container = document.getElementById("main-container");
+  pokemon.forEach((pokemon) => container.append(createCard(pokemon)));
 }
 
 function toggleImage(card) {
